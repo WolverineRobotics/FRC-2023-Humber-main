@@ -484,7 +484,7 @@ public class Robot extends TimedRobot {
     //}
     
     //MovePivot(o_control.getRightY());
-    intake.set((o_control.getLeftTriggerAxis() * 1) + (o_control.getRightTriggerAxis() * -1));
+    intake.set((o_control.getLeftTriggerAxis() * 1) + (o_control.getRightTriggerAxis() * -1) * 0.5);
     
   }
 
@@ -575,7 +575,7 @@ public class Robot extends TimedRobot {
       //
 
       case 2: // drive until it hits the charge station
-        if (current_timer < 2300){ // 2300 for mobility, 1500 for charge   station
+        if (current_timer < 0){ // 2300 for mobility, 1500 for charge   station
           m_robotDrive.arcadeDrive(0.6, 0);
         }
         else{
@@ -643,6 +643,7 @@ public class Robot extends TimedRobot {
       case 21: // bring elevator up
         elevator_lerp.setTarget(-53); //full dist = -50
         pivot_lerp.setTarget(-46);
+        intake.set(-0.03);
         //elevator_lerp.setThresh(0.5);
 
         if(!elevator_lerp.isFinished() && !pivot_lerp.isFinished()){
@@ -653,9 +654,9 @@ public class Robot extends TimedRobot {
           current_timer = 0;
           e_motors.set(0);
           intake_pivot.set(0);
+          intake.set(0);
           seq = 22;
         }
-
         break;
 
       case 22: //Outake gameobject
@@ -716,33 +717,33 @@ public class Robot extends TimedRobot {
 
      
     
-    //switch (seq){
-      //case 0: // deliver cube
-      //  if (current_timer < 1000){
-      //    intake.set(1); // -1 = cone, 1 = cube outtake
-      //  }
-      //  else{
-      //    seq = 1;
-      //    intake.set(0);
-      //  }
-      //  break;
+    // switch (seq){
+    //   case 0: // deliver cube
+    //    if (current_timer < 1000){
+    //      intake.set(1); // -1 = cone, 1 = cube outtake
+    //    }
+    //    else{
+    //      seq = 1;
+    //      intake.set(0);
+    //    }
+    //    break;
 
-      //case 0:
-      //  balancer.balancerPeriodic();
-      //   break;
+    //   case 0:
+    //    balancer.balancerPeriodic();
+    //     break;
         
-      //case 1: // drive for 2.5 seconds
-      //  if (current_timer < 2500){
-      //    m_robotDrive.arcadeDrive(0.7, 0);
-      //  }
-      //  else{
-      //    seq = 2;
-      //  }
-      //  break;
-      //case 2: // stop. STOP. STOOOOP (sponsored by KILLBOX™ )
-      //  
-      //  m_robotDrive.arcadeDrive(0, 0);
-      //  break;
+    //   case 1: // drive for 2.5 seconds
+    //    if (current_timer < 2500){
+    //      m_robotDrive.arcadeDrive(0.7, 0);
+    //    }
+    //    else{
+    //      seq = 2;
+    //    }
+    //    break;
+    //   case 2: // stop. STOP. STOOOOP (sponsored by KILLBOX™ )
+       
+    //    m_robotDrive.arcadeDrive(0, 0);
+    //    break;
     
     
 
